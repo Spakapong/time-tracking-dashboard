@@ -36,13 +36,14 @@ p {
     color: hsl(236, 100%, 87%);
 }
 label {
-    color: white;
+    color: hsl(236, 100%, 87%);;
 }
 label:hover {
-    color: black;
+    cursor: pointer;
+    text-decoration-line: underline;
 }
 input:checked + label {
-    color: red;
+    color: white;
 }
 .container {
     margin: 100px auto 50px auto;
@@ -59,7 +60,7 @@ input:checked + label {
 }
 .head-profile {
     background-color:hsl(246, 80%, 60%) ;
-    border-radius: 14px 14px 0 0;
+    border-radius: 14px;
     padding: 30px 20px 50px 20px;
 }
 #img-profile {
@@ -81,11 +82,18 @@ input[type=radio] {
     background-color:hsl(235, 46%, 20%) ;
     border-radius: 14px;
 }
+.cards:hover {
+    background-color:hsl(235, 46%, 30%) ;
+    cursor: pointer;
+}
 .card-content {
     padding: 20px;
 }
 .cards a{
     color: hsl(236, 100%, 87%);
+}
+.cards a:hover{
+    color: hsl(236, 440%,60%);
 }
 .card-head1 {
     background-color:hsl(15, 100%, 70%) ;
@@ -134,4 +142,46 @@ input[type=radio] {
     background-image: url(./images/icon-self-care.svg);
     background-repeat: no-repeat;
     background-position: 100% 0%;
+}
+
+@media only screen and (max-width:415px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+    }    
+    .head-profile {
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    #img-profile {
+        width: 60px;
+        height: 60px;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+    #report {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .select-time {
+        padding: 10px;
+    }
+    .card-head1,.card-head2,.card-head3,.card-head4,.card-head5,.card-head6 {
+        height: 40px;
+    }
+    .times {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .times h3 {
+        font-weight: 400;
+    }
 }
