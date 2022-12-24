@@ -1,49 +1,37 @@
 import data from './data.json' assert {type: 'json'};
-console.log(data);
 
-// function switchText(e) {
-//     if(e.target.value==="Daily"){
-//         document.getElementById('work-time').innerHTML = '5';
-//         document.getElementById('play-time').innerHTML = '5';
-//         document.getElementById('study-time').innerHTML = '5';
-//         document.getElementById('exercise-time').innerHTML = '5';
-//         document.getElementById('social-time').innerHTML = '5';
-//         document.getElementById('self-time').innerHTML = '5';
-//         document.getElementById('work-last').innerHTML = '5';
-//         document.getElementById('play-last').innerHTML = '5';
-//         document.getElementById('study-last').innerHTML = '5';
-//         document.getElementById('exercise-last').innerHTML = '5';
-//         document.getElementById('social-last').innerHTML = '5';
-//         document.getElementById('self-last').innerHTML = '5';
-//     }   
-//     else if(e.target.value==="Weekly"){
-//         document.getElementById('work-time').innerHTML = '15';
-//         document.getElementById('play-time').innerHTML = '15';
-//         document.getElementById('study-time').innerHTML = '15';
-//         document.getElementById('exercise-time').innerHTML = '15';
-//         document.getElementById('social-time').innerHTML = '15';
-//         document.getElementById('self-time').innerHTML = '15';
-//         document.getElementById('work-last').innerHTML = '15';
-//         document.getElementById('play-last').innerHTML = '15';
-//         document.getElementById('study-last').innerHTML = '15';
-//         document.getElementById('exercise-last').innerHTML = '15';
-//         document.getElementById('social-last').innerHTML = '15';
-//         document.getElementById('self-last').innerHTML = '15';
-//     }
-//     else if(e.target.value==="Monthly"){
-//         document.getElementById('work-time').innerHTML = '100';
-//         document.getElementById('play-time').innerHTML = '100';
-//         document.getElementById('study-time').innerHTML = '100';
-//         document.getElementById('exercise-time').innerHTML = '100';
-//         document.getElementById('social-time').innerHTML = '100';
-//         document.getElementById('self-time').innerHTML = '100';
-//         document.getElementById('work-last').innerHTML = '100';
-//         document.getElementById('play-last').innerHTML = '100';
-//         document.getElementById('study-last').innerHTML = '100';
-//         document.getElementById('exercise-last').innerHTML = '100';
-//         document.getElementById('social-last').innerHTML = '100';
-//         document.getElementById('self-last').innerHTML = '100';
-//     }
-// }
+// data[i].title.toLowerCase() is a name of kind
+let time = 'hr';
 
-// document.querySelector("form").addEventListener('change',switchText);
+function switchText(e) {
+    if(e.target.value==="Daily"){
+        for (let i = 0; i < 6; i++) {
+            if (data[i].timeframes.daily.current===1) {
+                time = 'hr';
+            } else {
+                time = 'hrs';
+            }
+            document.getElementById(`${data[i].title.replace(/\s+/g, '-').toLowerCase()}-time`).innerHTML = `${data[i].timeframes.daily.current}${time}`;
+            if (data[i].timeframes.daily.previous===1) {
+                time = 'hr';
+            } else {
+                time = 'hrs';
+            }
+            document.getElementById(`${data[i].title.replace(/\s+/g, '-').toLowerCase()}-last`).innerHTML = `Previous - ${data[i].timeframes.daily.previous}${time}`;
+        }
+    }   
+    else if(e.target.value==="Weekly"){
+        for (let i = 0; i < 6; i++) {
+            document.getElementById(`${data[i].title.replace(/\s+/g, '-').toLowerCase()}-time`).innerHTML = `${data[i].timeframes.weekly.current}hrs`;
+            document.getElementById(`${data[i].title.replace(/\s+/g, '-').toLowerCase()}-last`).innerHTML = `Previous - ${data[i].timeframes.weekly.previous}hrs`;
+        }
+    }
+    else if(e.target.value==="Monthly"){
+        for (let i = 0; i < 6; i++) {
+            document.getElementById(`${data[i].title.replace(/\s+/g, '-').toLowerCase()}-time`).innerHTML = `${data[i].timeframes.monthly.current}hrs`;
+            document.getElementById(`${data[i].title.replace(/\s+/g, '-').toLowerCase()}-last`).innerHTML = `Previous - ${data[i].timeframes.monthly.previous}hrs`;
+        }
+    }
+}
+
+document.querySelector("form").addEventListener('change',switchText);
